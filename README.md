@@ -18,10 +18,10 @@ It is also possible to install the plugin via repo url directly
 
 ### ionic-native wrapper
 
-Note : We are working on ionic-native wrapper for custom ui sdk  so that you can using below command to add that 
-npm install ionic-native/custom-uisdk
+Note : We are working on ionic-native wrapper for custom ui sdk  so that you can use below command to add wapper
+ - npm install ionic-native/custom-uisdk
 
-But for Now use below process to add ionic wapper
+But for now use below process to add ionic wapper
 
 Take checkout from below git command out from your cordova project directory
  - git clone -b 'customui-sdk' https://github.com/paytm/ionic-native.git
