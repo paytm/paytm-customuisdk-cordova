@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
-// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name PaytmNativeSDK
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
+// swift-module-flags: -target arm64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name PaytmNativeSDK
 import Foundation
 @_exported import PaytmNativeSDK
 import Swift
@@ -33,7 +33,7 @@ public struct UpiCollectConfigurations {
 }
 public typealias MerchantPaymentCompletionBlock = (PaytmNativeSDK.AINativeTokenFlowStatus) -> Swift.Void
 public typealias UPICollectCompletionCallBack = (PaytmNativeSDK.OrderStatus, PaytmNativeSDK.AINativeBaseParameterModel) -> Swift.Void
-@objc public class AIHandler : ObjectiveC.NSObject {
+@objc @_inheritsConvenienceInitializers public class AIHandler : ObjectiveC.NSObject {
   public var mid: Swift.String
   public var orderId: Swift.String
   public var upiCollectPollingCompletion: PaytmNativeSDK.UPICollectCompletionCallBack?
@@ -68,6 +68,9 @@ extension AIHandler {
   public func getSavedNetBankingMethod() -> Swift.String?
   public func saveNetBankingMethod(channelCode: Swift.String)
 }
+extension AIHandler {
+  public func pollingForStatus(selectedPayMode: PaytmNativeSDK.AINativeBaseParameterModel)
+}
 extension AIHandler : PaytmNativeSDK.AIDelegate {
   public func didFinish(with success: Swift.Bool, response: [Swift.String : Any], error: Swift.String?, withUserCancellation hasUserCancelledTransaction: Swift.Bool)
   public func openPaymentController(_ controller: UIKit.UIViewController)
@@ -83,7 +86,7 @@ extension AIHandler : PaytmNativeSDK.AIDelegate {
   }
 }
 public typealias AlertViewWithBlockHandler = (PaytmNativeSDK.JRAlertViewWithBlock?, Swift.Int) -> Swift.Void
-@objc public class JRAlertViewWithBlock : UIKit.UIAlertController {
+@objc @_inheritsConvenienceInitializers public class JRAlertViewWithBlock : UIKit.UIAlertController {
   @objc public var topViewcontroller: UIKit.UIViewController?
   public func show()
   public func show(_ handler: PaytmNativeSDK.AlertViewWithBlockHandler?)
@@ -101,9 +104,9 @@ public typealias AlertViewWithBlockHandler = (PaytmNativeSDK.JRAlertViewWithBloc
   public class func showAlertViewWithLeftAlignment(_ title: Swift.String?, message: Swift.String?, handler: PaytmNativeSDK.AlertViewWithBlockHandler?)
   @objc public class func showError(_ error: Foundation.NSError?)
   @objc public class func showError(_ error: Foundation.NSError?, handler: PaytmNativeSDK.AlertViewWithBlockHandler?)
+  @objc deinit
   @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
 }
 extension JRAlertViewWithBlock {
   @objc dynamic public class func showError(_ error: Foundation.NSError?, withErrorType errorType: PaytmNativeSDK.AlertViewType)
@@ -116,11 +119,11 @@ extension JRAlertViewWithBlock {
   public class func showAlertViewWithTitle(_ title: Swift.String?, message: Swift.String?, withErrorType errorType: PaytmNativeSDK.AlertViewType, handler: PaytmNativeSDK.AlertViewWithBlockHandler?)
   @objc dynamic public class func showAlertView(_ title: Swift.String?, message: Swift.String?, withErrorType errorType: PaytmNativeSDK.AlertViewType, cancelButtonTitle: Swift.String?, otherButtonTitles: Swift.String?, handler: PaytmNativeSDK.AlertViewWithBlockHandler?)
 }
-@objc public class JRPasscodeTextField : UIKit.UITextField {
+@objc @_inheritsConvenienceInitializers public class JRPasscodeTextField : UIKit.UITextField {
   @objc override dynamic public func deleteBackward()
+  @objc deinit
   @objc override dynamic public init(frame: CoreGraphics.CGRect)
   @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
 }
 public protocol AIDelegate : AnyObject {
   func didFinish(with success: Swift.Bool, response: [Swift.String : Any], error: Swift.String?, withUserCancellation hasUserCancelledTransaction: Swift.Bool)
@@ -178,13 +181,13 @@ public enum AINativeUPIFlow : Swift.String {
     get
   }
 }
-@objc public class AINativeConsentView : UIKit.UIView {
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AINativeConsentView : UIKit.UIView {
   @objc deinit
 }
 extension Dictionary {
   public mutating func setValue(value: Any, forKeyPath keyPath: Swift.String)
 }
-public class AIPollingModel {
+@_hasMissingDesignatedInitializers public class AIPollingModel {
   @objc deinit
 }
 public enum TokenType : Swift.String {
@@ -197,26 +200,26 @@ public enum TokenType : Swift.String {
     get
   }
 }
-public class AINativeBaseParameterModel {
+@_hasMissingDesignatedInitializers public class AINativeBaseParameterModel {
   @objc deinit
 }
-public class AINativeInhouseParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
+@_hasMissingDesignatedInitializers public class AINativeInhouseParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
   public init(withTransactionToken txnToken: Swift.String, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
   @objc deinit
 }
-public class AINativeSavedCardParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
-  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, authMode: PaytmNativeSDK.AuthMode, cardId: Swift.String?, cardNumber: Swift.String?, cvv: Swift.String?, expiryDate: Swift.String?, newCard isNewCard: Swift.Bool, saveInstrument: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
+@_hasMissingDesignatedInitializers public class AINativeSavedCardParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
+  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, authMode: PaytmNativeSDK.AuthMode, cardId: Swift.String?, cardNumber: Swift.String?, cvv: Swift.String?, expiryDate: Swift.String?, newCard isNewCard: Swift.Bool, saveInstrument: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback", reference_Id: Swift.String = "")
   @objc deinit
 }
-public class AINativeNBParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
-  public init(withTransactionToken txnToken: Swift.String, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, channelCode: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
+@_hasMissingDesignatedInitializers public class AINativeNBParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
+  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, channelCode: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback", reference_Id: Swift.String = "")
   @objc deinit
 }
-public class AINativeNUPIarameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
+@_hasMissingDesignatedInitializers public class AINativeNUPIarameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
   public init(withTransactionToken txnToken: Swift.String, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, amount: CoreGraphics.CGFloat, paymentModes: PaytmNativeSDK.AINativePaymentModes, vpaAddress: Swift.String, upiFlowType: PaytmNativeSDK.AINativeUPIFlow, merchantInfo: [Swift.String : Any]?, bankDetail: [Swift.String : Any]?, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
   @objc deinit
 }
-public class AINativeConsentManager {
+@_hasMissingDesignatedInitializers public class AINativeConsentManager {
   public static var shared: PaytmNativeSDK.AINativeConsentManager
   public func getConsentState() -> Swift.Bool
   @objc deinit

@@ -68,6 +68,9 @@ extension AIHandler {
   public func getSavedNetBankingMethod() -> Swift.String?
   public func saveNetBankingMethod(channelCode: Swift.String)
 }
+extension AIHandler {
+  public func pollingForStatus(selectedPayMode: PaytmNativeSDK.AINativeBaseParameterModel)
+}
 extension AIHandler : PaytmNativeSDK.AIDelegate {
   public func didFinish(with success: Swift.Bool, response: [Swift.String : Any], error: Swift.String?, withUserCancellation hasUserCancelledTransaction: Swift.Bool)
   public func openPaymentController(_ controller: UIKit.UIViewController)
@@ -205,11 +208,11 @@ public class AINativeInhouseParameterModel : PaytmNativeSDK.AINativeBaseParamete
   @objc deinit
 }
 public class AINativeSavedCardParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
-  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, authMode: PaytmNativeSDK.AuthMode, cardId: Swift.String?, cardNumber: Swift.String?, cvv: Swift.String?, expiryDate: Swift.String?, newCard isNewCard: Swift.Bool, saveInstrument: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
+  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, authMode: PaytmNativeSDK.AuthMode, cardId: Swift.String?, cardNumber: Swift.String?, cvv: Swift.String?, expiryDate: Swift.String?, newCard isNewCard: Swift.Bool, saveInstrument: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback", reference_Id: Swift.String = "")
   @objc deinit
 }
 public class AINativeNBParameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
-  public init(withTransactionToken txnToken: Swift.String, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, channelCode: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback")
+  public init(withTransactionToken txnToken: Swift.String, tokenType: PaytmNativeSDK.TokenType = .txntoken, orderId: Swift.String, shouldOpenNativePlusFlow: Swift.Bool, mid: Swift.String, flowType: PaytmNativeSDK.AINativePaymentFlow, paymentModes: PaytmNativeSDK.AINativePaymentModes, channelCode: Swift.String, redirectionUrl: Swift.String = "https://securegw.paytm.in/theia/paytmCallback", reference_Id: Swift.String = "")
   @objc deinit
 }
 public class AINativeNUPIarameterModel : PaytmNativeSDK.AINativeBaseParameterModel {
