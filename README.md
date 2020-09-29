@@ -23,14 +23,14 @@ Note : We are working on ionic-native wrapper for custom ui sdk  so that you can
 
 But for now use below process to add ionic wapper
 
-Take checkout from below git command out from your cordova project directory
+Take checkout from below git command out from your ionic project directory (branch customui-sdk)
  - git clone -b 'customui-sdk' https://github.com/paytm/ionic-native.git
  - cd ionic-native
  - npm i
  - npm run build
 
 The dist directory will contain a sub directory _@ionic-native_ with all the packages compiled in there. Copy the package(custom-uisdk) to your app's _node_modules_ under the _@ionic-native_ directory.
-   For example: `cp -r ../ionic-native/dist/@ionic-native/plugins/custom-uisdk node_modules/@ionic-native`. Change the path of directories as per your project structure.
+   For example: Run this command from ionic project `cp -r ../ionic-native/dist/@ionic-native/plugins/custom-uisdk node_modules/@ionic-native`. Change the path of directories as per your project structure.
 
 ## Usage:
 
@@ -64,7 +64,6 @@ this.customUI
         alert(JSON.stringify(res));
       })
       .catch((err) => {
-        this.value = err;
         alert(JSON.stringify(err));
       });
 ```
