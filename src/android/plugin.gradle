@@ -1,0 +1,13 @@
+repositories {
+    mavenLocal()
+    maven {
+        url "https://artifactory.paytm.in/libs-release-local"
+    }
+    google()
+    jcenter()
+
+}
+
+dependencies {
+    implementation "com.paytm.nativesdk:core:1.0.6"
+}
