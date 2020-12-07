@@ -14,23 +14,9 @@ It is also possible to install the plugin via repo url directly
 
 `ionic cordova plugin add https://github.com/paytm/paytm-customuisdk-cordova.git`
 
-## Pre-requisite
-
 ### ionic-native wrapper
 
-Note : We are working on ionic-native wrapper for custom ui sdk  so that you can use below command to add wapper
  - npm install ionic-native/custom-uisdk
-
-But for now use below process to add ionic wapper
-
-Take checkout from below git command out from your ionic project directory (branch customui-sdk)
- - git clone -b 'customui-sdk' https://github.com/paytm/ionic-native.git
- - cd ionic-native
- - npm i
- - npm run build
-
-The dist directory will contain a sub directory _@ionic-native_ with all the packages compiled in there. Copy the package(custom-uisdk) to your app's _node_modules_ under the _@ionic-native_ directory.
-   For example: Run this command from ionic project `cp -r ../ionic-native/dist/@ionic-native/plugins/custom-uisdk node_modules/@ionic-native`. Change the path of directories as per your project structure.
 
 ## Usage:
 
